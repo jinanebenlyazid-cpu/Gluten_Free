@@ -11,11 +11,11 @@
         @foreach ($products as $produit)
             <div class="col-md-4 mb-4">
                 <div class="card h-100 shadow-sm border-0">
-                    @php
+                    {{-- @php
                         $url = asset('images/' . ltrim($produit->image, '/'));
                         $url = preg_replace('#(?<!:)//+#', '/', $url);
-                    @endphp
-                    <img src="{{ $url }}" 
+                    @endphp --}}
+                    <img src="{{$produit->image}}" 
                          class="card-img-top" 
                          alt="{{ $produit->produitnom }}" 
                          style="height: 250px; object-fit: cover;">
