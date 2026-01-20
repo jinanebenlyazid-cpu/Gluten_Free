@@ -11,7 +11,7 @@
         @foreach ($produits as $produit)
             <div class="col-md-4 mb-4">
                 <div class="card h-100 shadow-sm border-0">
-                    <img src="{{ asset('images/' . $produit->image) }}" 
+                    <img src="{{$produit->image}}" 
                          class="card-img-top" 
                          alt="{{ $produit->produitnom }}" 
                          style="height: 250px; object-fit: cover;">
