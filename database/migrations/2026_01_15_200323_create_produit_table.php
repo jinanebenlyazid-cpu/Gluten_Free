@@ -10,7 +10,7 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
+    {if (!Schema::hasTable('produits')) {
         Schema::create('produits', function (Blueprint $table) {
             $table->id();
             $table->string('categorie');
@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->timestamps();
         });
-    }
+    }}
 
     /**
      * Reverse the migrations.

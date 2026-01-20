@@ -42,6 +42,9 @@
                     </ul>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/Produits/create" style="color: #FFFFFF;">Ajouter</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/about" style="color: #FFFFFF;">À propos</a>
                 </li>
 

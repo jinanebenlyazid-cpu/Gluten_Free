@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProduitsController;
+use App\Http\Controllers\RproduitsController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,3 +24,4 @@ Route::get('/produits', [ProduitsController::class, 'index']);
 
 Route::get('/categorie/{categorie}', [ProduitsController::class, 'getProductsByCategorie']);
 
+Route::resource('Produits', RproduitsController::class); 
