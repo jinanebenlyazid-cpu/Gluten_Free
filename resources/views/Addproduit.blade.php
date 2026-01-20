@@ -64,7 +64,7 @@
                 <!-- Image -->
                 <div class="mb-4">
                     <label class="form-label fw-bold" style="color:#8B6B3E;">Image du produit</label>
-                    <input type="file" name="image" class="form-control" >
+                    <input type="file" name="image" class="form-control" required>
                 </div>
                 @error('image')
                         <div class="text-danger mt-1 small">

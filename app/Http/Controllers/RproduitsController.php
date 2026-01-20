@@ -75,7 +75,7 @@ class RproduitsController extends Controller
         $produit->prix=$prix;
         $produit->image=$imageUrl;
         $produit->save();
-        return back()->with('success','You have successfully added a new Product.');
+        return back()->with('success','Vous avez ajouté un nouveau produit avec succès !!');
 
     }
 
@@ -92,15 +92,51 @@ class RproduitsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $produit=Produits::find($id);
+        return view('modifier',['produit'=>$produit]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AddProduitRequest $request, $id)
     {
-        //
+        $request->validated();
+
+        $categorie=$request->input("categorie");
+        $produitnom=$request->input("produitnom");
+        $description=$request->input("description");
+        $prix=$request->input("prix");
+        $image='';
+        $produit=Produits::find($id);
+        $produit->categorie=$categorie;
+        $produit->produitnom=$produitnom;
+        $produit->description=$description;
+        $produit->prix=$prix;
+
+        if($request->hasFile('image')) {
+            $image=$request->file('image')->getClientOriginalName();
+            $cloudinary = new Cloudinary([
+                'cloud' => [
+                    'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
+                    'api_key'    => env('CLOUDINARY_API_KEY'),
+                    'api_secret' => env('CLOUDINARY_API_SECRET'),
+                ],
+            ]);
+            $result = $cloudinary->uploadApi()->upload(
+                $request->file('image')->getRealPath(),
+                [
+                    'folder' => 'produits',
+                ]
+            );
+            $image = $result['secure_url'];   
+            }
+            else{
+                $image=$produit->image;
+            }
+            $produit->image=$image;
+            $produit->save();
+            return back()->with('successupdate','Vous avez mis à jour le produit avec succès!!');
     }
 
     /**
@@ -108,6 +144,9 @@ class RproduitsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $Produit=Produits::find($id);
+        $Produit->delete();
+
+         return back()->with('successdelete','Vous avez supprimé le produit avec succès!!');
     }
 }

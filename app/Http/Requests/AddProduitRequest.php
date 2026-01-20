@@ -26,7 +26,7 @@ class AddProduitRequest extends FormRequest
             'produitnom'  => 'required',
             'description' => 'required',
             'prix'        => 'required',
-            'image'       => 'required',
+            'image'       => 'nullable',
         ];
     }
      public function messages()
