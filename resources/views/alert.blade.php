@@ -19,12 +19,8 @@
 
 @endif
 @if($message=Session::get('successdelete'))
-
-<div class="alert alert-success alert-block">
-    
+    <div class="alert alert-success alert-block">
     <strong> {{$message}}</strong>
-    <button type="button" class="close" data-dismiss="alert">X</button>
-</div>
-
-
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 @endif
