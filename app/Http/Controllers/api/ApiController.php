@@ -30,23 +30,26 @@ class ApiController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-         $request->validate([
-            'categorie'   => 'required',
-            'produitnom'  => 'required',
-            'description' => 'required',
-            'prix'        => 'required',
-            'image'       => 'nullable',
-        ], [
-            'categorie.required'   => 'La catégorie est obligatoire.',
-            'produitnom.required'  => 'Le nom du produit est obligatoire.',
-            'prix.required'         => 'Le prix doit être un nombre.',
-            'image.required'          => 'Le fichier doit être une image valide.',
-            'description.required'    => 'la descriptions est obligatoire'
-        ]); 
-        
-        
-         $cloudinary = new Cloudinary([
+{
+    $request->validate([
+        'categorie'   => 'required',
+        'produitnom'  => 'required',
+        'description' => 'required',
+        'prix'        => 'required|numeric',
+        'image'       => 'nullable|image',
+    ], [
+        'categorie.required'   => 'La catégorie est obligatoire.',
+        'produitnom.required'  => 'Le nom du produit est obligatoire.',
+        'prix.required'        => 'Le prix est obligatoire.',
+        'prix.numeric'         => 'Le prix doit être un nombre.',
+        'image.image'          => 'Le fichier doit être une image valide.',
+        'description.required' => 'La description est obligatoire.',
+    ]);
+
+    $imageUrl = null;
+
+    if ($request->hasFile('image')) {
+        $cloudinary = new Cloudinary([
             'cloud' => [
                 'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
                 'api_key'    => env('CLOUDINARY_API_KEY'),
@@ -56,23 +59,25 @@ class ApiController extends Controller
 
         $result = $cloudinary->uploadApi()->upload(
             $request->file('image')->getRealPath(),
-            [
-                'folder' => 'produits',
-            ]
+            ['folder' => 'produits']
         );
 
         $imageUrl = $result['secure_url'];
-        $produit = Produits::create([ 
-        'categorie' => $request->input('categorie'), 
-        'produitnom' => $request->input('produitnom'), 
-        'description' => $request->input('description'),
-        'prix' => $request->input('prix'),
-        'image' => $imageUrl,
-        ]); 
-        $produit->save();
-
-        return response()->json(['message' => 'produit ajouté avec succès!!', 'product' => $produit]);
     }
+
+    $produit = Produits::create([
+        'categorie'   => $request->input('categorie'),
+        'produitnom'  => $request->input('produitnom'),
+        'description' => $request->input('description'),
+        'prix'        => $request->input('prix'),
+        'image'       => $imageUrl,
+    ]);
+
+    return response()->json([
+        'message' => 'Produit ajouté avec succès!',
+        'product' => $produit
+    ], 201);
+}
 
     /**
      * Display the specified resource.
