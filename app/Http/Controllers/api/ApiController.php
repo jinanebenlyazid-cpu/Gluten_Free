@@ -15,13 +15,9 @@ class ApiController extends Controller
      */
     public function index()
     {
-      /*  $produit = Produits::all(); 
-        return response()->json($produit);*/
+       $produit = Produits::all(); 
+        return response()->json($produit);
 
-         return response()->json([
-        'message' => 'API test works without params',
-        'status'  => 'ok',
-    ], 200);
     }
 
     public function filtrer(Request $request) 
