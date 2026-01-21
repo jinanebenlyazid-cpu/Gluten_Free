@@ -33,7 +33,6 @@ class ApiController extends Controller
 {
     try {
 
-        // ✅ Validation
         $request->validate([
             'categorie'   => 'required',
             'produitnom'  => 'required',
@@ -44,7 +43,6 @@ class ApiController extends Controller
 
         $imageUrl = null;
 
-        // ✅ Upload image (Cloudinary)
         if ($request->hasFile('image')) {
             $cloudinary = new \Cloudinary\Cloudinary([
                 'cloud' => [
@@ -62,7 +60,6 @@ class ApiController extends Controller
             $imageUrl = $result['secure_url'];
         }
 
-        // ✅ Insert DB
         $produit = Produits::create([
             'categorie'   => $request->categorie,
             'produitnom'  => $request->produitnom,
@@ -71,17 +68,16 @@ class ApiController extends Controller
             'image'       => $imageUrl,
         ]);
 
-        // ✅ Success JSON
         return response()->json([
             'message' => 'Produit ajouté avec succès',
             'product' => $produit
         ], 201);
 
     } catch (\Throwable $e) {
-
-        // ❌ Error JSON (باش ماترجعش HTML)
         return response()->json([
             'error' => $e->getMessage(),
+            'file'  => $e->getFile(),
+            'line'  => $e->getLine(),
         ], 500);
     }
 }
