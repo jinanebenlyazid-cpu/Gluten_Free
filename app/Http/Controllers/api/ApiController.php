@@ -29,12 +29,63 @@ class ApiController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+   public function store(Request $request)
 {
-    return response()->json([
-        'data' => $request->all()
-    ]);
+    try {
+
+        // ✅ Validation
+        $request->validate([
+            'categorie'   => 'required',
+            'produitnom'  => 'required',
+            'description' => 'required',
+            'prix'        => 'required|numeric',
+            'image'       => 'nullable|image',
+        ]);
+
+        $imageUrl = null;
+
+        // ✅ Upload image (Cloudinary)
+        if ($request->hasFile('image')) {
+            $cloudinary = new \Cloudinary\Cloudinary([
+                'cloud' => [
+                    'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
+                    'api_key'    => env('CLOUDINARY_API_KEY'),
+                    'api_secret' => env('CLOUDINARY_API_SECRET'),
+                ],
+            ]);
+
+            $result = $cloudinary->uploadApi()->upload(
+                $request->file('image')->getRealPath(),
+                ['folder' => 'produits']
+            );
+
+            $imageUrl = $result['secure_url'];
+        }
+
+        // ✅ Insert DB
+        $produit = Produits::create([
+            'categorie'   => $request->categorie,
+            'produitnom'  => $request->produitnom,
+            'description' => $request->description,
+            'prix'        => $request->prix,
+            'image'       => $imageUrl,
+        ]);
+
+        // ✅ Success JSON
+        return response()->json([
+            'message' => 'Produit ajouté avec succès',
+            'product' => $produit
+        ], 201);
+
+    } catch (\Throwable $e) {
+
+        // ❌ Error JSON (باش ماترجعش HTML)
+        return response()->json([
+            'error' => $e->getMessage(),
+        ], 500);
+    }
 }
+
 
     /**
      * Display the specified resource.
