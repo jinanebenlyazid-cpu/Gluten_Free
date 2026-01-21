@@ -31,52 +31,9 @@ class ApiController extends Controller
      */
     public function store(Request $request)
 {
-    $request->validate([
-        'categorie'   => 'required',
-        'produitnom'  => 'required',
-        'description' => 'required',
-        'prix'        => 'required|numeric',
-        'image'       => 'nullable|image',
-    ], [
-        'categorie.required'   => 'La catégorie est obligatoire.',
-        'produitnom.required'  => 'Le nom du produit est obligatoire.',
-        'prix.required'        => 'Le prix est obligatoire.',
-        'prix.numeric'         => 'Le prix doit être un nombre.',
-        'image.image'          => 'Le fichier doit être une image valide.',
-        'description.required' => 'La description est obligatoire.',
-    ]);
-
-    $imageUrl = null;
-
-    if ($request->hasFile('image')) {
-        $cloudinary = new Cloudinary([
-            'cloud' => [
-                'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
-                'api_key'    => env('CLOUDINARY_API_KEY'),
-                'api_secret' => env('CLOUDINARY_API_SECRET'),
-            ],
-        ]);
-
-        $result = $cloudinary->uploadApi()->upload(
-            $request->file('image')->getRealPath(),
-            ['folder' => 'produits']
-        );
-
-        $imageUrl = $result['secure_url'];
-    }
-
-    $produit = Produits::create([
-        'categorie'   => $request->input('categorie'),
-        'produitnom'  => $request->input('produitnom'),
-        'description' => $request->input('description'),
-        'prix'        => $request->input('prix'),
-        'image'       => $imageUrl,
-    ]);
-
     return response()->json([
-        'message' => 'Produit ajouté avec succès!',
-        'product' => $produit
-    ], 201);
+        'data' => $request->all()
+    ]);
 }
 
     /**
