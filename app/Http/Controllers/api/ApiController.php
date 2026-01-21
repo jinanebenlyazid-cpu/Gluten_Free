@@ -22,7 +22,7 @@ class ApiController extends Controller
     public function filtrer(Request $request) 
     { 
         $query = $request->input('p'); 
-        $peoduit = Produits::where('titre', 'like', "$query%")->get(); 
+        $peoduit = Produits::where('produitnom', 'like', "$query%")->get(); 
         return response()->json($peoduit); 
     }
     /**
