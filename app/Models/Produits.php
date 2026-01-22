@@ -11,6 +11,7 @@ class Produits extends Model
         'produitnom',
         'description',
         'prix',
+        'solde',
         'image',
     ];
 }

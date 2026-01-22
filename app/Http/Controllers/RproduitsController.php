@@ -149,4 +149,8 @@ class RproduitsController extends Controller
 
          return back()->with('successdelete','Vous avez supprimé le produit avec succès!!');
     }
+    public function espaceadmin(){
+        $produits=Produits::paginate(3);
+        return view('espaceadmin', ['products' => $produits ]);
+    }
 }

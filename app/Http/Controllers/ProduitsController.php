@@ -8,15 +8,27 @@ use Illuminate\Support\Facades\View;
 class ProduitsController extends Controller
 {
     public function index()
-{
-    $produits=Produits::paginate(3);
-    return view('produits', ['products' => $produits ]);
-}
-public function getProductsByCategorie($categorie) 
-{ 
+    {
+        $produits=Produits::paginate(3);
+        return view('produits', ['products' => $produits ]);
+    }
+    public function getProductsByCategorie($categorie) 
+    { 
 
-    $produits = Produits::where('categorie', $categorie)->get(); 
-   
-    return view('categorie', [ 'produits' => $produits, 'categorie' =>$categorie  ]); 
-} 
+        $produits = Produits::where('categorie', $categorie)->get(); 
+    
+        return view('categorie', [ 'produits' => $produits, 'categorie' =>$categorie  ]); 
+    } 
+    public function espaceclient(){
+        $produitsSolde = Produits::where('solde', '>', 0)
+            ->orderBy('solde', 'desc')
+            ->get();
+
+        return view('espaceclient', compact('produitsSolde'));
+    }
+    public function espaceadmin(){
+        $produits=Produits::paginate(3);
+        return view('espaceadmin',['products' => $produits ]);
+    }
 }
+

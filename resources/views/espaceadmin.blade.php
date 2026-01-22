@@ -23,7 +23,7 @@
                         Ajouter au panier
                     </a>
 
-                    {{-- <!-- Modifier & Supprimer -->
+                    <!-- Modifier & Supprimer -->
                     <div class="d-flex justify-content-center gap-2 mt-2">
 
                         <!-- Modifier -->
@@ -40,7 +40,7 @@
                             </button>
                         </form>
 
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
