@@ -13,10 +13,10 @@
             <div class="overlay-dark"></div>
             <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=1600" class="d-block w-100 h-100 object-fit-cover" alt="Pain sans gluten">
             <div class="carousel-caption d-flex flex-column justify-content-center h-100">
-                <h1 class="display-2 fw-bold animate__animated animate__fadeInDown" style="color: #D4AF37;">Pur & Sain.</h1>
-                <p class="lead fs-3 mb-4 animate__animated animate__fadeInUp">Le meilleur du sans gluten, livré partout au Maroc.</p>
+                <h1 class="display-2 fw-bold animate__animated animate__fadeInDown" style="color: #D4AF37;">Pur & Sain</h1>
+                <p class="lead fs-3 mb-4 animate__animated animate__fadeInUp">Le meilleur du sans gluten, livré partout au Maroc</p>
                 <div>
-                    <a href="/produits" class="btn btn-gold btn-lg rounded-pill px-5 py-3 fw-bold shadow">Découvrir le Catalogue</a>
+                    <a href="/produits" class="btn btn-gold btn-lg rounded-pill px-5 py-3 fw-bold shadow">Découvrir les produits</a>
                 </div>
             </div>
         </div>
