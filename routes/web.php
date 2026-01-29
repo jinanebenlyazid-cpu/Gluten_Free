@@ -18,7 +18,9 @@ Route::fallback(function () {
     return view('erreur'); 
 });
 
-
+Route::get('/energie', function () {
+    return view('energie');
+});
 
 Route::get('/produits', [ProduitsController::class, 'index']);
 

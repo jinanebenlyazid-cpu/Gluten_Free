@@ -1,6 +1,27 @@
-<footer class="py-4" style="background-color: #8B6B3E; color: #FFFFFF;">
-    <div class="container text-center">
-        <p>&copy; {{ date('Y') }} Gluten-Free Morocco Hub. Tous droits réservés.</p>
-        <p>Email: glutenfreemorocco@gmail.com | Téléphone: +212 600 000 000</p>
+<footer class="pt-5 pb-3 mt-auto" style="background-color: #3e2f1b; color: #f8f9fa;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h5 class="fw-bold mb-3" style="color: #D4AF37;">GF Morocco Hub</h5>
+                <p class="small text-white">Votre partenaire santé pour une alimentation sans gluten au Maroc depuis 2024.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5 class="fw-bold mb-3" style="color: #D4AF37;">Liens Utiles</h5>
+                <ul class="list-unstyled">
+                    <li><a href="/produits" class="text-white text-decoration-none small">Catalogue</a></li>
+                    <li><a href="/contact" class="text-white text-decoration-none small">Support Client</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5 class="fw-bold mb-3" style="color: #D4AF37;">Contact</h5>
+                <p class="small mb-1">📍 Tanger, Maroc</p>
+                <p class="small mb-1">📧 glutenfreemorocco@gmail.com</p>
+                <p class="small">📞 +212 600 000 000</p>
+            </div>
+        </div>
+        <hr class="bg-secondary">
+        <div class="text-center small opacity-75">
+            <p>&copy; {{ date('Y') }} Gluten-Free. Tous droits réservés.</p>
+        </div>
     </div>
 </footer>

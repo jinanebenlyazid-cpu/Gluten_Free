@@ -1,109 +1,56 @@
-<nav class="navbar navbar-expand-lg" style="background-color: #D4AF37;">
+<nav class="navbar navbar-expand-lg sticky-top shadow-sm" style="background: #D4AF37;">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="/">
-            <img src="/images/gluten-free-logo.jpg"
-                 alt="Logo"
-                 style="height: 50px; margin-right: 10px;"
-                 class="rounded">
+            <img src="/images/gluten-free-logo.jpg" alt="Logo" style="height: 55px; width: 70px; object-fit: cover;" class="rounded-circle border border-white">
+            <span class="ms-2 fw-bold text-white d-none d-sm-inline"></span>
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-
-                <!-- Liens publics (visiteur + connecté) -->
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/">Accueil</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/produits">Produits</a>
-                </li>
-
-                <!-- Catégories -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white"
-                       href="#"
-                       id="navbarDropdown"
-                       role="button"
-                       data-bs-toggle="dropdown">
-                        Catégories
-                    </a>
-                    <ul class="dropdown-menu">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item mx-1"><a class="nav-link text-white fw-medium active" href="/">Accueil</a></li>
+                <li class="nav-item mx-1"><a class="nav-link text-white fw-medium" href="/produits">Produits</a></li>
+                
+                <li class="nav-item dropdown mx-1">
+                    <a class="nav-link dropdown-toggle text-white fw-medium" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">Catégories</a>
+                    <ul class="dropdown-menu shadow border-0 mt-2">
                         @foreach ($categori as $cat)
-                            <li>
-                                <a class="dropdown-item"
-                                   href="/categorie/{{ $cat->categorie }}">
-                                    {{ $cat->categorie }}
-                                </a>
-                            </li>
+                            <li><a class="dropdown-item py-2" href="/categorie/{{ $cat->categorie }}">{{ $cat->categorie }}</a></li>
                         @endforeach
                     </ul>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/about">À propos</a>
-                </li>
+                <li class="nav-item mx-1"><a class="nav-link text-white fw-medium" href="/about">À propos</a></li>
+                <li class="nav-item mx-1 me-lg-3"><a class="nav-link text-white fw-medium" href="/contact">Contact</a></li>
 
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/contact">Contact</a>
-                </li>
-
-                <!-- ===== UTILISATEUR CONNECTÉ ===== -->
                 @auth
-
-                    <!-- ADMIN -->
-                    @if(Auth::user()->role === 'ADMIN')
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="/Produits/create">
-                                Ajouter Produit
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="/espaceadmin">
-                                Espace Admin
-                            </a>
-                        </li>
-                    @endif
-
-                    <!-- USER -->
-                    @if(Auth::user()->role === 'USER')
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="/espaceclient">
-                                Espace Client
-                            </a>
-                        </li>
-                    @endif
-
-                    <!-- Déconnexion -->
-                    <li class="nav-item">
-                        <form action="/logout" method="POST">
-                            @csrf
-                            <button type="submit" class="btn nav-link text-white">
-                                Déconnexion
-                            </button>
-                        </form>
+                    <li class="nav-item dropdown">
+                        <a class="btn btn-outline-light dropdown-toggle px-3" href="#" role="button" data-bs-toggle="dropdown">
+                            Mon Compte
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
+                            @if(Auth::user()->role === 'ADMIN')
+                                <li><a class="dropdown-item" href="/Produits/create">➕ Ajouter Produit</a></li>
+                                <li><a class="dropdown-item" href="/espaceadmin">📊 Espace Admin</a></li>
+                            @else
+                                <li><a class="dropdown-item" href="/espaceclient">👤 Espace Client</a></li>
+                            @endif
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form action="/logout" method="POST" class="px-3">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger btn-sm w-100">Déconnexion</button>
+                                </form>
+                            </li>
+                        </ul>
                     </li>
-
-                <!-- ===== VISITEUR ===== -->
                 @else
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="/login">
-                            Connexion
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="/register">
-                            Inscription
-                        </a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link text-white fw-bold" href="/login">Connexion</a></li>
+                    <li class="nav-item"><a class="btn btn-light ms-lg-2 rounded-pill px-4 text-dark" href="/register">S'inscrire</a></li>
                 @endauth
-
             </ul>
         </div>
     </div>
