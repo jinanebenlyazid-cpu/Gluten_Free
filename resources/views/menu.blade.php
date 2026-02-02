@@ -35,6 +35,7 @@
                             @if(Auth::user()->role === 'ADMIN')
                                 <li><a class="dropdown-item" href="/Produits/create">➕ Ajouter Produit</a></li>
                                 <li><a class="dropdown-item" href="/espaceadmin">📊 Espace Admin</a></li>
+                                <li> <a class="dropdown-item" href="/email">📧 Envoyer Email</a> </li>
                             @else
                                 <li><a class="dropdown-item" href="/espaceclient">👤 Espace Client</a></li>
                             @endif

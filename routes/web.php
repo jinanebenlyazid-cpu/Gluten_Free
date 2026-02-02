@@ -58,5 +58,7 @@ Route::middleware(['adminuser'])->group(function () {
 
     Route::get('/espaceadmin', [RproduitsController::class, 'espaceadmin'])
         ->name('espaceadmin');
+    Route::get('/email', [RproduitsController::class,'email']);
+     Route::post('/send/email', [RproduitsController::class, 'sendEmail'])->name('send.email');
 });
 

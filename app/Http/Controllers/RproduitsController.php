@@ -5,7 +5,8 @@ use App\Http\Requests\AddProduitRequest;
 use App\Models\Produits;
 use Cloudinary\Cloudinary;
 use Illuminate\Http\Request;
-
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 class RproduitsController extends Controller
 
 {
@@ -153,4 +154,24 @@ class RproduitsController extends Controller
         $produits=Produits::paginate(3);
         return view('espaceadmin', ['products' => $produits ]);
     }
+    public function sendEmail(Request $request)
+    {
+        $data = [
+            'recipient_email' => $request->input('recipient_email'),
+            'subject' => $request->input('subject'),
+            'message' => $request->input('message'),
+        ];
+
+        // Envoyer l'e-mail en utilisant la classe Mailable
+        Mail::to($data['recipient_email'])->send(new TestMail($data));
+
+        return back()->with('success','Email sent successfully!');
+    }
+
+
+    public function email()
+        {
+            return view('emailc');
+        }
+
 }
