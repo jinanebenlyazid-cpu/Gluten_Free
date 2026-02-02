@@ -49,7 +49,7 @@
                         </ul>
                     </li>
                 @else
-                    <li class="nav-item"><a class="nav-link text-white fw-bold" href="/login">Connexion</a></li>
+                    <li class="nav-item"><a class="btn btn-warning  ms-lg-2 rounded-pill px-4 text-dark" href="/login">Connexion</a></li>
                     <li class="nav-item"><a class="btn btn-light ms-lg-2 rounded-pill px-4 text-dark" href="/register">S'inscrire</a></li>
                 @endauth
             </ul>
