@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 mb-4">
-                <h5 class="fw-bold mb-3" style="color: #D4AF37;">GF Morocco Hub</h5>
-                <p class="small text-white">Votre partenaire santé pour une alimentation sans gluten au Maroc depuis 2024.</p>
+                <h5 class="fw-bold mb-3" style="color: #D4AF37;">Gluten-Free</h5>
+                <p class="small text-white">Votre partenaire santé pour une alimentation sans gluten au Maroc depuis 2025</p>
             </div>
             <div class="col-md-4 mb-4">
                 <h5 class="fw-bold mb-3" style="color: #D4AF37;">Liens Utiles</h5>
@@ -15,7 +15,7 @@
             <div class="col-md-4 mb-4">
                 <h5 class="fw-bold mb-3" style="color: #D4AF37;">Contact</h5>
                 <p class="small mb-1">📍 Tanger, Maroc</p>
-                <p class="small mb-1">📧 glutenfreemorocco@gmail.com</p>
+                <p class="small mb-1">📧 glutenfree@gmail.com</p>
                 <p class="small">📞 +212 600 000 000</p>
             </div>
         </div>
