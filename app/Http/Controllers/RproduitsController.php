@@ -174,4 +174,84 @@ class RproduitsController extends Controller
             return view('emailc');
         }
 
+    public function cart()
+    {
+        return view('cart');
+    }
+
+    public function addToCart($id){
+        $product = Produits::find($id);
+        $cart = session()->get('cart');
+         // panier vide
+        if (!$cart) {
+            $cart = [
+                $id => [
+                    "name" => $product->nom,
+                    "quantity" => 1,
+                    "price" => $product->prix,
+                    "photo" => $product->image
+                ]
+            ];
+            session()->put('cart', $cart);
+            return back()->with('success', 'Produit ajouté');
+        }
+
+        // produit existe
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+            session()->put('cart', $cart);
+            return back()->with('success', 'Quantité augmentée');
+        }
+
+        // nouveau produit
+        $cart[$id] = [
+            "name" => $product->nom,
+            "quantity" => 1,
+            "price" => $product->prix,
+            "photo" => $product->image
+        ];
+
+        session()->put('cart', $cart);
+        return back()->with('success', 'Produit ajouté');
+
+    }
+
+    public function updateCart(Request $request)
+    {
+        $cart = session()->get('cart');
+        $cart[$request->id]['quantity'] = $request->quantity;
+        session()->put('cart', $cart);
+
+        return back()->with('success', 'Panier mis à jour');
+    }
+
+    public function removeFromCart(Request $request)
+    {
+        $cart = session()->get('cart');
+        unset($cart[$request->id]);
+        session()->put('cart', $cart);
+
+        return back()->with('success', 'Produit supprimé');
+    }
+
+    public function checkout()
+    {
+        $cart = session()->get('cart');
+        $total = 0;
+
+        if ($cart) {
+            foreach ($cart as $item) {
+                $total += $item['price'] * $item['quantity'];
+            }
+        }
+
+        return view('checkout', compact('total'));
+    }
+
+    public function payment(Request $request)
+    {
+        session()->forget('cart');
+
+        return redirect('/cart')->with('success', 'Paiement effectué avec succès 💳');
+    }
 }

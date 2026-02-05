@@ -62,3 +62,12 @@ Route::middleware(['adminuser'])->group(function () {
      Route::post('/send/email', [RproduitsController::class, 'sendEmail'])->name('send.email');
 });
 
+    Route::get('/cart', [RproduitsController::class, 'cart']);
+    Route::get('/add-to-cart/{id}', [RproduitsController::class, 'addToCart']);
+    Route::post('/update-cart', [RproduitsController::class, 'updateCart']);
+    Route::post('/remove-cart', [RproduitsController::class, 'removeFromCart']);
+
+    
+    Route::get('/checkout', [RproduitsController::class, 'checkout']);
+    Route::post('/payment', [RproduitsController::class, 'payment'])->name('payment');
+

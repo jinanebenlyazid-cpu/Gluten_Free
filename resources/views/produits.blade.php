@@ -19,7 +19,7 @@
                     <p class="card-text fw-bold">{{ $produit->prix }} DH</p>
 
                     <!-- Ajouter au panier (reste comme avant) -->
-                    <a href="#" class="btn btn-warning text-white mb-2">
+                    <a href="/add-to-cart/{{$produit->id}}" class="btn btn-warning text-white mb-2">
                         Ajouter au panier
                     </a>
 

@@ -39,7 +39,9 @@
                             @else
                                 <li><a class="dropdown-item" href="/espaceclient">👤 Espace Client</a></li>
                             @endif
+                            
                             <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/cart">🛒 Panier</a></li>
                             <li>
                                 <form action="/logout" method="POST" class="px-3">
                                     @csrf
