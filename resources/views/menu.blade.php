@@ -1,3 +1,37 @@
+<style>
+.lang-select {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #D4AF37;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-weight: 500;
+    cursor: pointer;
+     appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    
+}
+
+.lang-select option {
+    background: #D4AF37;
+    color: #181515;
+    border: 1px solid #D4AF37;
+    border-radius: 20px;
+    padding: 6px 14px;
+    cursor: pointer;
+}
+.lang-btn {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #D4AF37;
+    border-radius: 20px;
+    padding: 6px 14px;
+    cursor: pointer;
+}
+</style>
+
 <nav class="navbar navbar-expand-lg sticky-top shadow-sm" style="background: #D4AF37;">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="/">
@@ -54,7 +88,22 @@
                     <li class="nav-item"><a class="btn btn-warning  ms-lg-2 rounded-pill px-4 text-dark" href="/login">Connexion</a></li>
                     <li class="nav-item"><a class="btn btn-light ms-lg-2 rounded-pill px-4 text-dark" href="/register">S'inscrire</a></li>
                 @endauth
+                <li class="nav-item mx-1">
+                    <form action="{{url('/')}}" method="GET" id="formid">
+                        <select class="lang-select" name="lang" id="langselect" onchange="changeLocale()">
+                            <option class="lang-btn" value="fr" {{App::getLocale() == 'fr' ? 'selected' : ''}}>Francais</option>
+                            <option class="lang-btn" value="en" {{App::getLocale() == 'en' ? 'selected' : ''}}>Englais</option>
+                            <option class="lang-btn" value="ar" {{App::getLocale() == 'ar' ? 'selected' : ''}}>Arab</option>
+                        </select>
+                    </form>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
+<script>
+    function changeLocale() {
+        var selectedLocale = document.getElementById("langselect").value;
+        window.location.href = "/" + selectedLocale;
+}
+</script>

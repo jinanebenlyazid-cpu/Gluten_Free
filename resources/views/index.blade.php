@@ -13,10 +13,10 @@
             <div class="overlay-dark"></div>
             <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=1600" class="d-block w-100 h-100 object-fit-cover" alt="Pain sans gluten">
             <div class="carousel-caption d-flex flex-column justify-content-center h-100">
-                <h1 class="display-2 fw-bold animate__animated animate__fadeInDown" style="color: #D4AF37;">Pur & Sain</h1>
-                <p class="lead fs-3 mb-4 animate__animated animate__fadeInUp">Le meilleur du sans gluten, livré partout au Maroc</p>
+                <h1 class="display-2 fw-bold animate__animated animate__fadeInDown" style="color: #D4AF37;">{{__('index.h1')}}</h1>
+                <p class="lead fs-3 mb-4 animate__animated animate__fadeInUp">{{trans('index.p1')}}</p>
                 <div>
-                    <a href="/produits" class="btn btn-gold btn-lg rounded-pill px-5 py-3 fw-bold shadow">Découvrir les produits</a>
+                    <a href="/produits" class="btn btn-gold btn-lg rounded-pill px-5 py-3 fw-bold shadow">{{__('index.a1')}}</a>
                 </div>
             </div>
         </div>
@@ -29,16 +29,16 @@
     
     <div class="carousel-caption d-flex flex-column justify-content-center h-100">
         <h1 class="display-2 fw-bold animate__animated animate__fadeInDown" style="color: #FFFFFF;">
-            Votre santé avant tout
+            {{__('index.h2')}}
         </h1>
         
         <p class="lead fs-3 mb-4 animate__animated animate__fadeInUp" style="max-width: 800px; margin: 0 auto;">
-            La maladie cœliaque n'est pas une fin, c'est le début d'une vie plus saine, plus consciente et pleine de vitalité.
+           {{__('index.p2')}}
         </p>
         
         <div>
             <a href="/energie" class="btn btn-outline-light btn-lg rounded-pill px-5 py-3 fw-bold shadow-sm">
-                Découvrir Mon Nouveau Style de Vie
+                {{__('index.a2')}}
             </a>
         </div>
     </div>

@@ -2,9 +2,10 @@
 
 use App\Http\Controllers\ProduitsController;
 use App\Http\Controllers\RproduitsController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\HomeController;
 Route::get('/', function () {
     return view('index');
 });
@@ -30,7 +31,7 @@ Route::resource('Produits', RproduitsController::class);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::middleware(['useruser'])->group(function () {
     Route::get('/espaceclient', [ProduitsController::class, 'espaceclient'])
@@ -71,3 +72,7 @@ Route::middleware(['adminuser'])->group(function () {
     Route::get('/checkout', [RproduitsController::class, 'checkout']);
     Route::post('/payment', [RproduitsController::class, 'payment'])->name('payment');
 
+    Route::get('/{lang?}',function ($lang = 'fr'){
+        App::setLocale($lang);
+        return view('index');
+    });

@@ -48,6 +48,9 @@ class RproduitsController extends Controller
         // $produit->save();
 
         // return back()->with('success', 'Vous avez ajouté un produit avec succès !');
+
+
+        
         $cloudinary = new Cloudinary([
             'cloud' => [
                 'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
@@ -57,7 +60,7 @@ class RproduitsController extends Controller
         ]);
 
         $result = $cloudinary->uploadApi()->upload(
-            $request->file('image')->getRealPath(),
+            $request->file('image')->getRealPath(), 
             [
                 'folder' => 'produits',
             ]
